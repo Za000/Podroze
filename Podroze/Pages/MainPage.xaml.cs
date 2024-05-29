@@ -1,4 +1,6 @@
-﻿using System.Reflection;
+﻿using Podroze.Controllers;
+using Podroze.Pages;
+using System.Reflection;
 using System.Text.Json;
 
 namespace Podroze
@@ -22,6 +24,22 @@ namespace Podroze
                 CounterBtn.Text = $"Clicked {count} times";
 
             SemanticScreenReader.Announce(CounterBtn.Text);
+        }
+
+        private async void OnLogoutButtonClicked(object sender, EventArgs e)
+        {
+            await Logout();
+        }
+
+        private async Task Logout()
+        {
+            // Usunięcie danych logowania z SecureStorage
+            var AutController = App.ServiceProvider.GetService<IAuthenticationController>();
+            await AutController.LogOut();
+
+            // Nawigacja do strony logowania
+            var loginPage = App.ServiceProvider.GetRequiredService<Login>();
+            Application.Current.MainPage = new NavigationPage(loginPage);
         }
     }
 

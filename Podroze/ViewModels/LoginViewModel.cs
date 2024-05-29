@@ -1,4 +1,4 @@
-﻿using Podroze.Pages;
+﻿using Podroze.Models;
 
 namespace Podroze.ViewModels;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -6,6 +6,7 @@ using CommunityToolkit.Mvvm.Input;
 using Microsoft.Maui.Controls;
 using System.Windows.Input;
 using Podroze.Controllers;
+using Podroze.Pages;
 
 public partial class LoginViewModel : ObservableObject
 {
@@ -16,6 +17,9 @@ public partial class LoginViewModel : ObservableObject
 
     [ObservableProperty]
     private string password;
+
+    [ObservableProperty] 
+    private bool autologin;
 
     public ICommand LoginCommand { get; }
     public ICommand RegisterCommand { get; }
@@ -35,7 +39,13 @@ public partial class LoginViewModel : ObservableObject
 
         if (isAuthenticated)
         {
-            Application.Current.MainPage = new MainPage();
+            if (Autologin)
+            {
+                await SecureStorage.SetAsync("username", Username);
+                await SecureStorage.SetAsync("password", Password);
+            }
+
+            Application.Current.MainPage = new AppShell();
         }
         else
         {

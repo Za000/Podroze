@@ -21,6 +21,24 @@ namespace Podroze
             MainPage = new NavigationPage(mainPage);
         }
 
+        protected override void OnStart()
+        {
+            base.OnStart();
+
+            AttemptAutoLogin();
+        }
+
+        private async Task AttemptAutoLogin()
+        {
+            var AuthController = ServiceProvider.GetService<IAuthenticationController>();
+            bool LoggedIn = await AuthController.AutoLoginAuthentication();
+
+            if (LoggedIn)
+            {
+                Application.Current.MainPage = new AppShell();
+            }
+        }
+
         private void ConfigureServices(IServiceCollection services)
         {
             AppSettings settings = new AppSettings();

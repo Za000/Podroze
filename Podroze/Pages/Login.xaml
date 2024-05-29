@@ -12,11 +12,23 @@
                <Label HorizontalTextAlignment="Center" FontSize="32">Zaloguj się</Label>
 
                <VerticalStackLayout>
-                    <Entry Placeholder="Nazwa użytkownika" class="username" Margin="15" Text="{Binding Username}"/>
-                    <Entry Placeholder="Hasło" IsPassword="true" class="password" Margin="15" Text="{Binding Password}"/>
+                    <Entry Placeholder="Nazwa użytkownika" class="username" Margin="15" Text="{Binding Username}" HorizontalOptions="FillAndExpand" FlowDirection="MatchParent"/>
+                    <Entry Placeholder="Hasło" IsPassword="true" class="password" Margin="15" Text="{Binding Password}" HorizontalOptions="FillAndExpand" FlowDirection="MatchParent"/>
                </VerticalStackLayout>
 
-                <Button x:Name="submit" FontSize="20" TextColor="White" Text="Zaloguj się" Command="{Binding LoginCommand}">
+               <FlexLayout Direction="Row" VerticalOptions="Center" Margin="0, 15, 15, 15">
+                   <CheckBox IsChecked="{Binding Autologin}" x:Name="RememberLogin" BackgroundColor="Red" />
+                   <Label Text="Zaloguj mnie automatycznie" VerticalOptions="Center">
+                       <Label.Triggers>
+                            <DataTrigger TargetType="Label"
+                                         Binding="{Binding Source={x:Reference RememberLogin}, Path=IsChecked}"
+                                         Value="true">
+                           </DataTrigger>
+                       </Label.Triggers>
+                   </Label>
+               </FlexLayout>
+
+                    <Button x:Name="submit" FontSize="20" TextColor="White" Text="Zaloguj się" Command="{Binding LoginCommand}">
                     <Button.Behaviors>
                         <toolkit:AnimationBehavior>
                             <toolkit:AnimationBehavior.AnimationType>
