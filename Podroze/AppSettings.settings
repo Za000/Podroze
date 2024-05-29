@@ -1,0 +1,15 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Podroze" GeneratedClassName="AppSettings">
+  <Profiles />
+  <Settings>
+    <Setting Name="api_key" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">WT2jtGF0CUL7SVs52FBETr5eMLlD3DbB</Value>
+    </Setting>
+    <Setting Name="api_secret" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">pAXfYZoRB8KOuE7n</Value>
+    </Setting>
+    <Setting Name="dbconnect" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Data Source=localhost\SQLEXPRESS;Initial Catalog=TravelAgency;Integrated Security=True;Trust Server Certificate=True</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

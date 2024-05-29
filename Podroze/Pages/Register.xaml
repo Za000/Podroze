@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:vm="clr-namespace:Podroze.ViewModels"
+             x:Class="Podroze.Pages.Register"
+             Title="Register">
+
+    <toolkit:DockLayout DockPosition="None">
+        <FlexLayout  toolkit:DockLayout.DockPosition="None" JustifyContent="Center" AlignItems="Center" Direction="Column" AlignContent="SpaceBetween">
+            <VerticalStackLayout toolkit:DockLayout.DockPosition="None" WidthRequest="450" Padding="25">
+                <Label HorizontalTextAlignment="Center" FontSize="32">Zarejestruj się</Label>
+
+                <VerticalStackLayout>
+                    <HorizontalStackLayout>
+                        <Entry Placeholder="Imię" class="fname" Margin="15" Text="{Binding FirstName}"/>
+                        <Entry Placeholder="Nazwisko" class="lname" Margin="15" Text="{Binding LastName}"/>
+                    </HorizontalStackLayout>
+                    <Entry Placeholder="Nazwa użytkownika" class="username" Margin="15" Text="{Binding Username}"/>
+                    <Entry Placeholder="Adres Email" class="email" Margin="15" Text="{Binding Email}"/>
+                    <Entry Placeholder="Hasło" IsPassword="true" class="password" Margin="15" Text="{Binding Password}"/>
+                    <Entry Placeholder="Powtórz Hasło" IsPassword="true" x:Name="password_confirm" Margin="15" Text="{Binding PasswordConfirm}"/>
+                </VerticalStackLayout>
+
+                <Button x:Name="submit" FontSize="20" TextColor="White" Text="Zarejestruj się" Command="{Binding RegisterCommand}">
+                    <Button.Behaviors>
+                        <toolkit:AnimationBehavior>
+                            <toolkit:AnimationBehavior.AnimationType>
+                                <toolkit:FadeAnimation  Opacity="0.8" Length="150"/>
+                            </toolkit:AnimationBehavior.AnimationType>
+                        </toolkit:AnimationBehavior>
+                    </Button.Behaviors>
+                </Button>
+            </VerticalStackLayout>
+        </FlexLayout>
+    </toolkit:DockLayout>
+</ContentPage>
