@@ -3,6 +3,17 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:maui="using:Microsoft.Maui"
-    xmlns:local="using:Podroze.WinUI">
+    xmlns:local="using:Podroze.WinUI"
+    xmlns:pages="clr-namespace:Podroze.Pages">
+
+    <Application.Resources>
+        <DataTemplate x:Key="MauiAppTitleBarTemplate">
+            <Grid Background="#f2f2f2" Canvas.ZIndex="1" VerticalAlignment="Stretch">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+            </Grid>
+        </DataTemplate>
+    </Application.Resources>
 
 </maui:MauiWinUIApplication>

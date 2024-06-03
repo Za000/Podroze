@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Podroze.Controllers;
 using Podroze.Pages;
+using Podroze.Pages.App;
 using Podroze.ViewModels;
 
 namespace Podroze
@@ -18,7 +19,7 @@ namespace Podroze
             ServiceProvider = services.BuildServiceProvider();
             var mainPage = ServiceProvider.GetRequiredService<Login>();
 
-            MainPage = new NavigationPage(mainPage);
+            MainPage = mainPage;
         }
 
         protected override void OnStart()
@@ -32,10 +33,9 @@ namespace Podroze
         {
             var AuthController = ServiceProvider.GetService<IAuthenticationController>();
             bool LoggedIn = await AuthController.AutoLoginAuthentication();
-
             if (LoggedIn)
             {
-                Application.Current.MainPage = new AppShell();
+                Application.Current.MainPage = new NavigationPage(new SearchHotels());
             }
         }
 
@@ -46,6 +46,7 @@ namespace Podroze
                 options.UseSqlServer(settings.dbconnect));
 
             services.AddSingleton<IAuthenticationController, AuthenticationController>();
+            
             services.AddTransient<LoginViewModel>();
             services.AddTransient<RegisterViewModel>();
             services.AddTransient<Login>();

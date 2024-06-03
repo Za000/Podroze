@@ -1,4 +1,6 @@
-﻿using Podroze.Models;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Podroze.Models;
+using Podroze.Pages.App;
 
 namespace Podroze.ViewModels;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -7,6 +9,7 @@ using Microsoft.Maui.Controls;
 using System.Windows.Input;
 using Podroze.Controllers;
 using Podroze.Pages;
+using Microsoft.WindowsAppSDK.Runtime.Packages;
 
 public partial class LoginViewModel : ObservableObject
 {
@@ -45,7 +48,8 @@ public partial class LoginViewModel : ObservableObject
                 await SecureStorage.SetAsync("password", Password);
             }
 
-            Application.Current.MainPage = new AppShell();
+            Podroze.App.Current.MainPage = new NavigationPage(new SearchHotels());
+            
         }
         else
         {
@@ -55,7 +59,7 @@ public partial class LoginViewModel : ObservableObject
 
     private async void OnRegister()
     {
-        var registerPage = App.ServiceProvider.GetRequiredService<Register>();
+        var registerPage = Podroze.App.ServiceProvider.GetRequiredService<Register>();
         await Application.Current.MainPage.Navigation.PushAsync(registerPage);
     }
 }

@@ -53,5 +53,17 @@ namespace Podroze {
                 this["dbconnect"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("4ujuyWl3R42SyxkOHF2wFmaSoF1ieyzT")]
+        public string api_search {
+            get {
+                return ((string)(this["api_search"]));
+            }
+            set {
+                this["api_search"] = value;
+            }
+        }
     }
 }

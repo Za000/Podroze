@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Podroze.Pages.User.UserPage"
+             Title="UserPage">
+
+    <ContentPage.Resources>
+        <ResourceDictionary Source="/Resources/Styles/User/UserPage.xaml"></ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <StackLayout Orientation="Horizontal">
+
+            <Grid Grid.Row="2"
+                  ColumnDefinitions="auto,*"
+                  RowDefinitions="auto,auto"
+                  RowSpacing="10"
+                  BackgroundColor="#f2f2f2"
+                  Padding="0,25,25,25">
+
+                <Border x:Name="DashboardButton"
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Margin="10,0,0,0"
+                        AutomationProperties.IsInAccessibleTree="True"
+                        VerticalOptions="Center"
+                        Style="{StaticResource MenuItemBorder}">
+                    <StackLayout Orientation="Horizontal">
+                        <Label FontFamily="FaSolid900"
+                               FontSize="18"
+                               Text="&#xf625;"
+                               Margin="0,0,10,0"/>
+                        <Label
+                            TextColor="Black"
+                            Text="Dashboard"></Label>
+                    </StackLayout>
+                </Border>
+
+                <Border x:Name="UserDetailsButton"
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Margin="10,0,0,0"
+                        AutomationProperties.IsInAccessibleTree="True"
+                        VerticalOptions="Center"
+                        Style="{StaticResource MenuItemBorder}">
+                   <StackLayout Orientation="Horizontal">
+                       <Label FontFamily="FaSolid900"
+                              FontSize="18"
+                              Text="&#xf007;"
+                              Margin="0,0,10,0"/>
+                       <Label
+                           TextColor="Black"
+                           Text="Twoje dane"></Label>
+                    </StackLayout>
+                </Border>
+            </Grid>
+
+            <StackLayout x:Name="BaseContent"
+                         HorizontalOptions="FillAndExpand"
+                         VerticalOptions="FillAndExpand" />
+        </StackLayout>
+        
+    </ContentPage.Content>
+</ContentPage>

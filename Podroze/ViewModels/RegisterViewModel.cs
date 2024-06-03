@@ -74,7 +74,7 @@ public partial class RegisterViewModel : ObservableObject
         }
         else
         {
-            var loginPage = App.ServiceProvider.GetRequiredService<Login>();
+            var loginPage = Podroze.App.ServiceProvider.GetRequiredService<Login>();
            await Application.Current.MainPage.Navigation.PushAsync(loginPage);
         }
 

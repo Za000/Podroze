@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<local:MainPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Podroze.Pages.App.SearchHotels"
+             xmlns:vm="clr-namespace:Podroze.ViewModels.App"
+             xmlns:maps="clr-namespace:Microsoft.Maui.Controls.Maps;assembly=Microsoft.Maui.Controls.Maps"
+             xmlns:local="clr-namespace:Podroze">
+
+    <local:MainPage.BindingContext>
+        <vm:SearchHotelsViewModel></vm:SearchHotelsViewModel>
+    </local:MainPage.BindingContext>
+
+    <local:MainPage.BasePageContent>
+        <VerticalStackLayout>
+            <VerticalStackLayout>
+                <SearchBar x:Name="searchBar"
+                           SearchCommand="{Binding PerformSearch}"
+                           SearchCommandParameter="{Binding Text, Source={x:Reference searchBar}}"/>
+                <ScrollView HeightRequest="150">
+                    <ListView x:Name="searchResults"
+                              ItemsSource="{Binding SearchResults}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <VerticalStackLayout Padding="10">
+                                        <Label
+                                            Text="{Binding address[freeformAddress]}"
+                                            FontAttributes="Bold" />
+                                        <Label 
+                                            Text="{Binding address[countrySubdivisionName]}"
+                                            FontAttributes="Italic"
+                                            VerticalOptions="End" />
+                                    </VerticalStackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </ScrollView>
+            </VerticalStackLayout>
+
+        </VerticalStackLayout>
+    </local:MainPage.BasePageContent>
+</local:MainPage>

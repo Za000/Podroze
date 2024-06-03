@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Class="Podroze.Pages.Views.HeaderBar">
+
+    <FlexLayout Direction="Row" AlignContent="Start" JustifyContent="End" BackgroundColor="#F2F2F2">
+        <StackLayout Padding="0, 0, 20, 0">
+            <toolkit:AvatarView
+                Text="ZS"
+                CornerRadius="30"
+                BackgroundColor="gray"
+                HorizontalOptions="Center"
+                x:Name="UserMenu">
+                <toolkit:AvatarView.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnAvatarTapped"/>
+                </toolkit:AvatarView.GestureRecognizers>
+            </toolkit:AvatarView>
+        </StackLayout>
+    </FlexLayout>
+</ContentView>

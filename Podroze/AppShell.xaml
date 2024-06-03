@@ -5,7 +5,9 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:Podroze"
     xmlns:pages="clr-namespace:Podroze.Pages"
-    Shell.FlyoutBehavior="Disabled"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:views="clr-namespace:Podroze.Pages.Views"
+    Shell.FlyoutBehavior="Locked"
     Title="Podroze">
 
     <ShellContent
