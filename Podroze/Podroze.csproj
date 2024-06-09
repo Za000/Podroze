@@ -66,12 +66,13 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="AathifMahir.Maui.MauiIcons.FontAwesome" Version="3.0.0" />
+		<PackageReference Include="AathifMahir.Maui.MauiIcons.FontAwesome.Solid" Version="3.0.0" />
 		<PackageReference Include="BCrypt.Net" Version="0.1.0" />
 		<PackageReference Include="CommunityToolkit.Maui" Version="9.0.0" />
 		<PackageReference Include="CommunityToolkit.Maui.Core" Version="9.0.0" />
 		<PackageReference Include="CommunityToolkit.Maui.Maps" Version="2.0.2" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
-		<PackageReference Include="IeuanWalker.Maui.Breadcrumb" Version="1.1.0" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.6" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.6">
 		  <PrivateAssets>all</PrivateAssets>
@@ -83,12 +84,13 @@
 		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
 		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
-		<PackageReference Include="Microsoft.Maui.Controls" Version="8.0.14" />
+		<PackageReference Include="Microsoft.Maui.Controls" Version="8.0.20" />
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.14" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
 		<PackageReference Include="System.Configuration.ConfigurationManager" Version="8.0.0" />
 		<PackageReference Include="System.Net.Http.Formatting.Extension" Version="5.2.3" />
+		<PackageReference Include="Telerik.UI.for.Maui.Trial" Version="7.0.0" />
 	</ItemGroup>
 
 	<ItemGroup>

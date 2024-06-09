@@ -3,8 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Podroze.Pages.App.SearchHotels"
              xmlns:vm="clr-namespace:Podroze.ViewModels.App"
-             xmlns:maps="clr-namespace:Microsoft.Maui.Controls.Maps;assembly=Microsoft.Maui.Controls.Maps"
-             xmlns:local="clr-namespace:Podroze">
+             xmlns:local="clr-namespace:Podroze"
+             xmlns:fa="http://www.aathifmahir.com/dotnet/2022/maui/icons"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui">
 
     <local:MainPage.BindingContext>
         <vm:SearchHotelsViewModel></vm:SearchHotelsViewModel>
@@ -12,13 +13,16 @@
 
     <local:MainPage.BasePageContent>
         <VerticalStackLayout>
+
             <VerticalStackLayout>
+                <Label Text="Gdzie chcesz się wybrać?"/>
                 <SearchBar x:Name="searchBar"
                            SearchCommand="{Binding PerformSearch}"
                            SearchCommandParameter="{Binding Text, Source={x:Reference searchBar}}"/>
-                <ScrollView HeightRequest="150">
+                <ScrollView HeightRequest="150" IsVisible="{Binding ObSearchResultsVisibility}">
                     <ListView x:Name="searchResults"
-                              ItemsSource="{Binding SearchResults}">
+                              ItemsSource="{Binding SearchResults}"
+                              SelectedItem="{Binding SelectedPlace}">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>
@@ -38,6 +42,103 @@
                 </ScrollView>
             </VerticalStackLayout>
 
+            <VerticalStackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <VerticalStackLayout WidthRequest="350" VerticalOptions="Start">
+                        <Label Text="Data pobytu od" Margin="0,5,0,5"/>
+                        <telerik:RadDatePicker x:Name="checkInDate" 
+                                               Date="{Binding ObCheckInDate}"
+                            DisplayStringFormat="dd/MMM/yyyy"
+                            Placeholder="Pick a date!"
+                            SpinnerFormat="dd/MMM/yyyy"
+                            AreSpinnerHeadersVisible="False"
+                            MinimumDate="{Binding ObCheckInMinDate}"/>
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout WidthRequest="350" VerticalOptions="Start">
+                        <Label Text="Data pobytu do" Margin="0,5,0,5"/>
+                        <telerik:RadDatePicker x:Name="checkOutDate" 
+                                               Date="{Binding CheckOutDate}"
+                                               DisplayStringFormat="dd/MMM/yyyy"
+                                               Placeholder="Wybierz datę"
+                                               SpinnerFormat="dd/MMM/yyyy"
+                                               AreSpinnerHeadersVisible="False"
+                                               MinimumDate="{Binding ObCheckOutMinDate}"/>
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout WidthRequest="350" VerticalOptions="Start" MaximumWidthRequest="150">
+                        <Label Text="Liczba gości" Margin="0,5,0,5"/>
+                        <telerik:RadNumericInput Value="{Binding ObGuestsCount, Mode=TwoWay}" AutomationId="numericDefinedValue" x:Name="guestsCount" Minimum="1" />
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout WidthRequest="350" VerticalOptions="Start" MaximumWidthRequest="150">
+                        <Label Text="Liczba pokoi" Margin="0,5,0,5"/>
+                        <telerik:RadNumericInput AutomationId="numericCommands" x:Name="roomsCount" 
+                                                 Value="{Binding ObRoomsCount, Mode=TwoWay}" 
+                                                 Minimum="{Binding ObMinimumRooms}" 
+                                                 Maximum="{Binding ObMaximumRooms}"/>
+                    </VerticalStackLayout>
+                </StackLayout>
+
+                <StackLayout>
+                   <StackLayout Margin="0,10">
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="Fill" VerticalOptions="Center">
+                            <VerticalStackLayout WidthRequest="350" VerticalOptions="Start">
+                                <Label Text="Wybierz udogodnienia" Margin="0,5,0,5"/>
+                                <telerik:RadComboBox ItemsSource="{Binding hotelAmenities}" 
+                                                     DisplayMemberPath="name"
+                                                     AutomationId="selectedItemMultipleCombo"
+                                                     SelectionMode="Multiple"
+                                                     IsEditable="True"
+                                                     Placeholder="Wybierz udogodnienia"
+                                                     SearchTextPath="name"
+                                                     OpenOnFocus="True"
+                                                     SelectedItems="{Binding SelectedAmenities}"/>
+                            </VerticalStackLayout>
+
+                            <VerticalStackLayout VerticalOptions="Start" >
+                                <Label Text="Ocena hotelu" Margin="0,5,0,5"/>
+                                <StackLayout VerticalOptions="Center">
+                                    <telerik:RadTemplatedRating 
+                                        AutomationId="templatedRating" 
+                                        ItemsSpacing="5"
+                                        Value="{Binding HotelRating}">
+                                        <telerik:RadTemplatedRating.ItemTemplate>
+                                            <DataTemplate>
+                                                <Label Text="{fa:FontAwesome Star}" FontSize="20" TextColor="Gray"></Label>
+                                            </DataTemplate>
+                                        </telerik:RadTemplatedRating.ItemTemplate>
+                                        <telerik:RadTemplatedRating.SelectedItemTemplate>
+                                            <DataTemplate>
+                                                <Label Text="{fa:FontAwesomeSolid Star}" FontSize="20" TextColor="Gold" ></Label>
+                                            </DataTemplate>
+                                        </telerik:RadTemplatedRating.SelectedItemTemplate>
+                                    </telerik:RadTemplatedRating>
+                                </StackLayout>
+                            </VerticalStackLayout>
+                        </StackLayout>
+                    </StackLayout>
+                    <Button 
+                        HorizontalOptions="Start" 
+                        VerticalOptions="Center" 
+                        Text="Wyszukaj hotel"
+                        Command="{Binding SearchHotels}"/>
+                </StackLayout>
+            </VerticalStackLayout>
+        </VerticalStackLayout>
+
+        <VerticalStackLayout>
+            <ScrollView>
+                <CollectionView ItemsSource="{Binding ObHotels}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <VerticalStackLayout>
+                                <Label Text="{Binding name}" />
+                            </VerticalStackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </ScrollView>
         </VerticalStackLayout>
     </local:MainPage.BasePageContent>
 </local:MainPage>

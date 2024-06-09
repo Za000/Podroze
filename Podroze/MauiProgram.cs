@@ -1,14 +1,16 @@
 ﻿using Microsoft.Extensions.Logging;
 using CommunityToolkit.Maui;
 using CommunityToolkit.Maui.Maps;
+using MauiIcons.FontAwesome;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Internal;
 using Podroze.Controllers;
 using Podroze.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
 using Podroze.Pages;
-using IeuanWalker.Maui.StateButton;
 using Microsoft.Maui.Controls.Hosting;
+using Telerik.Maui.Controls.Compatibility;
+using MauiIcons.FontAwesome.Solid;
 
 namespace Podroze
 {
@@ -18,8 +20,11 @@ namespace Podroze
         {
             var builder = MauiApp.CreateBuilder();
             builder
+                .UseTelerik()
                 .UseMauiApp<App>()
                 .UseMauiCommunityToolkit()
+                .UseFontAwesomeSolidMauiIcons()
+                .UseFontAwesomeMauiIcons()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");

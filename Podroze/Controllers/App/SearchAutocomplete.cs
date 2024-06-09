@@ -2,6 +2,7 @@
 using System.Net.Http.Formatting;
 using Newtonsoft.Json;
 using Podroze.Models;
+using System.Text.Json.Nodes;
 
 namespace Podroze.Controllers.App;
 
@@ -19,7 +20,8 @@ public static class SearchAutocomplete
         if (results.Contains("detailedError"))
             return null;
         JsonSerializer serializer = new JsonSerializer();
-        PlacesList? SearchResult = Newtonsoft.Json.JsonConvert.DeserializeObject<PlacesList?>(results);
+        PlacesList? SearchResult = Newtonsoft.Json.JsonConvert.DeserializeObject<PlacesList?>
+            (results);
 
         return SearchResult;
     }
@@ -40,6 +42,7 @@ public static class SearchAutocomplete
         {
             var result = await response.Content.ReadAsStringAsync();
             return result;
+
         }
 
         return null;
